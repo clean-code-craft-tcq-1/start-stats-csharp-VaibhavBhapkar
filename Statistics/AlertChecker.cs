@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace Statistics
 {
     /// <summary>
@@ -38,19 +38,19 @@ namespace Statistics
             iAlerters = ialerter;
         }
         /// <summary>
-        /// If list contains number higher than thresold setting emailSen =t and ledGlows to true
+        /// If max of list is higher than thresold setting emailSent to true and ledGlows to true
         /// </summary>
         /// <param name="numbers">list of number</param>
         public void checkAndAlert(List<float> numbers)
         {
-            for (int i = 0; i < numbers.Count; i++)
+            float max = numbers.Max();
+            
+            if (max > maxThreshold)
             {
-                if (numbers[i] > maxThreshold)
-                {
                     iAlerters[0].emailSent = true;
                     iAlerters[1].ledGlows = true;
-                }
             }
+            
 
         }
 
